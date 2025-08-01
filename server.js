@@ -21,7 +21,7 @@ app.use(express.static(path.resolve('./build')));
 // Let SvelteKit handle all other routes
 app.use(handler);
 
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3000;
     app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
