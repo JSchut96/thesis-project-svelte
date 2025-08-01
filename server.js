@@ -4,7 +4,8 @@ import path from 'path';
 
 const app = express();
 
-// Serve static files from the build directory
+app.set('trust proxy', true);
+
 app.use(express.static(path.resolve('./build')));
 
 // Let SvelteKit handle all other routes
