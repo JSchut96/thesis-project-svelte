@@ -2,12 +2,31 @@
     import Content from '$lib/components/Content.svelte';
 
     let layouts = ['grid', 'carousel', 'honeycomb'];
+
+    let layoutRank1 = '';
+    let layoutRank2 = '';
+    let layoutRank3 = '';
+
+    let form: HTMLFormElement;
+
+    function handleSubmit(event: Event) {
+        const selected = [layoutRank1, layoutRank2, layoutRank3];
+
+        const unique = new Set(selected);
+
+        if (unique.size !== 3) {
+            alert("Please select a different layout for each rank.");
+            return;
+        }
+
+        form.submit();
+    }
 </script>
 
     <Content>
     <h1>Final Questionnaire</h1>
     <p></p>
-    <form method="POST">
+    <form method="POST" bind:this={form} on:submit|preventDefault={handleSubmit}>
         <div class="section">
         <h3>Rank the three layouts from best (1) to worst (3)*</h3>
         <table>
@@ -21,7 +40,7 @@
             <tr>
                 <td>1 (Best)</td>
                 <td>
-                    <select name="layoutRank1" required>
+                    <select name="layoutRank1" bind:value={layoutRank1} required>
                         <option value="" disabled selected>Select layout</option>
                         {#each layouts as layout}
                             <option value={layout}>
@@ -34,7 +53,7 @@
             <tr>
                 <td>2</td>
                 <td>
-                <select name="layoutRank2" required>
+                <select name="layoutRank2" bind:value={layoutRank2} required>
                     <option value="" disabled selected>Select layout</option>
                     {#each layouts as layout}
                         <option value={layout}>
@@ -47,7 +66,7 @@
             <tr>
                 <td>3 (Worst)</td>
                 <td>
-                <select name="layoutRank3" required>
+                <select name="layoutRank3" bind:value={layoutRank3} required>
                     <option value="" disabled selected>Select layout</option>
                     {#each layouts as layout}
                         <option value={layout}>
@@ -114,4 +133,10 @@
   .button:hover {
     background-color: rgba(255,19,30,255);
   }
+
+    .error {
+        color: red;
+        font-weight: bold;
+        margin-top: 0.5rem;
+    }
 </style>

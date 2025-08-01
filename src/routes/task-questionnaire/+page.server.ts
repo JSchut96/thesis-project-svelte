@@ -61,7 +61,7 @@ export const actions: Actions = {
 
         try {
             await prisma.likertRating.createMany({ data: payload });
-            console.log(` ${layout} Likert ratings added to DB for user `, participant.sessionId, new Date().toISOString());
+            console.log(`${layout} Likert ratings added to DB for user `, participant.sessionId, new Date().toISOString());
         } catch (err) {
             console.error('Database update failed:', err, new Date().toISOString());
             throw error(500, 'Failed to create database entries.');

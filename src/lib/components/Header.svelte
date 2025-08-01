@@ -59,6 +59,10 @@
         z-index: 2;
     }
 
+    h2 {
+        font-size: max(1rem, 1vw);
+    }
+
     button {
         padding: 5px 10px;
         font-size: 0.8vw;

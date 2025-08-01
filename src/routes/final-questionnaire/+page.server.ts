@@ -1,6 +1,5 @@
 import { error, redirect, type Actions } from '@sveltejs/kit';
 import prisma from '$lib/server/prisma';
-import { data } from '@tensorflow/tfjs';
 
 export const actions: Actions = {
     default: async ({ request, locals }) => {

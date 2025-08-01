@@ -38,9 +38,6 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 
     const {layout, chosenMovie, actions, timestamp}: {layout: string, chosenMovie: string, actions: any[], timestamp: Date} = await request.json();
     
-    console.log(actions);
-
-
     if(!actions) {
         throw error(400, 'No mouse actions provided.');
     }
