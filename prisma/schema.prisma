@@ -1,0 +1,106 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+enum Gender {
+  male
+  female
+  non_binary
+  prefer_not_to_say
+  other
+}
+
+enum Experience {
+  none
+  little
+  some
+  experienced
+  expert
+}
+
+model Participant {
+  id                Int       @id @default(autoincrement())
+  sessionId         String    @unique @default(uuid())
+  consentGiven      Boolean
+  consentTimestamp  DateTime
+  layoutOrder       Json?
+  layoutIndex       Int       @default(0)
+  extractedGenres   Json     
+  preferenceMovies  Json     
+  moviePages        Json     
+  started           Boolean   @default(false)
+  finished          Boolean   @default(false)
+
+  // Demographics
+  age               Int?     
+  gender            Gender?
+  nationality       String?
+  netflixExperience Experience?
+  disneyExperience  Experience?
+  hoursPerWeek      Int?
+}
+
+model GridMeasurements {
+  id                Int       @id @default(autoincrement())
+  sessionId         String    @unique
+  firstMovie        String?
+  chosenMovie       String?
+  hoveredMovies     Json?
+  startTime         BigInt
+  endTime           BigInt?
+  totalTime         Int?
+}
+
+model CarouselMeasurements {
+  id                Int       @id @default(autoincrement())
+  sessionId         String    @unique
+  firstMovie        String?
+  chosenMovie       String?
+  hoveredMovies     Json?
+  startTime         BigInt
+  endTime           BigInt?
+  totalTime         Int?
+}
+
+model HoneycombMeasurements {
+  id                Int       @id @default(autoincrement())
+  sessionId         String    @unique
+  firstMovie        String?
+  chosenMovie       String?
+  hoveredMovies     Json?
+  startTime         BigInt
+  endTime           BigInt?
+  totalTime         Int?
+}
+
+model LikertRating {
+  id          Int      @id @default(autoincrement())
+  sessionId   String
+  layout      String
+  adjective   String
+  value       Int
+  createdAt   DateTime @default(now())
+}
+
+model QuestionnaireAnswers {
+  id             Int      @id @default(autoincrement())
+  sessionId      String   @unique
+  layoutRank1    String   
+  layoutRank2    String
+  layoutRank3    String
+  reasoning      String  
+  prosCons       String  
+  remarks        String?  
+  createdAt      DateTime @default(now())
+}

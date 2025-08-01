@@ -1,0 +1,121 @@
+<script lang="ts">
+    import Content from '$lib/components/Content.svelte';
+    import { onMount } from 'svelte';
+    import { preloadData } from '$app/navigation';
+
+    onMount(() => {
+        preloadData('/preference');
+    })    
+
+    let formData = {
+        age: '',
+        gender: '',
+        nationality: '',
+        netflixExperience: '',
+        disneyExperience: '',
+        hoursPerWeek: ''
+    };
+</script>
+    <Content>
+        <h1>Almost ready</h1>
+        <p>Before you begin, please fill in the demographic questions below</p>
+
+        <form method="POST" class="form-container">
+            <div class="form-group">
+                <label for="age">What is your age?</label>
+                <input id="age" name="age" type="number" bind:value={formData.age} min="18" max="100" required />
+            </div>
+
+            <div class="form-group">
+                <label for="gender">What is your gender?</label>
+                <select id="gender" name="gender" bind:value={formData.gender} required>
+                    <option value="" disabled selected>Select gender</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="non_binary">Non-binary</option>
+                    <option value="prefer_not_to_say">Prefer not to say</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="nationality">What is your nationality?</label>
+                <input id="nationality" name="nationality" type="text"  bind:value={formData.nationality} pattern="[A-Za-z\s]+" required />
+            </div>
+
+            <div class="form-group">
+                <label for="netflixExperience">How much experience do you have with Netflix?</label>
+                <select name="netflixExperience" bind:value={formData.netflixExperience} required>
+                    <option value="" disabled selected>Select one</option>
+                    <option value="none">None</option>
+                    <option value="little">A little</option>
+                    <option value="some">Some experience</option>
+                    <option value="experienced">Experienced</option>
+                    <option value="expert">Expert</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="disneyExperience">How much experience do you have with Disney+?</label>
+                <select name="disneyExperience" bind:value={formData.disneyExperience} required>
+                    <option value="" disabled selected>Select one</option>
+                    <option value="none">None</option>
+                    <option value="little">A little</option>
+                    <option value="some">Some experience</option>
+                    <option value="experienced">Experienced</option>
+                    <option value="expert">Expert</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="hours">How many hours per week do you spend on streaming services like Netflix or Disney+?</label>
+                <input id="hours" name="hoursPerWeek" type="number" bind:value={formData.hoursPerWeek} min="0" max="100" required />
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </Content>
+
+<style>
+  .form-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  input,
+  select {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+
+  button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: var(--button-highlight-color);
+  }
+</style>
