@@ -55,7 +55,7 @@
         </p>
     </div>
     <p>Want to participate? That's amazing!<br> After giving consent you can continue with the button below.</p>
-    <form method="POST">
+    <form method="POST" action="?/">
         <div class="consent">
             <input type="checkbox" name="consent" value="true" />
             <label for="consent">
