@@ -56,14 +56,14 @@
 
     let isSelected = false;
     const toggleSelect = () => {     
-      const index = selectedMovies.indexOf(movie.id);
+      const index = selectedMovies.indexOf(itemId);
 
       // If movie is already selected, remove it from the list, otherwise add it
       if (index !== -1) {
         selectedMovies.splice(index, 1);
         isSelected = false;
       } else {
-        selectedMovies.push(movie.id)
+        selectedMovies.push(itemId)
         isSelected = true;
       }
     };
@@ -81,6 +81,7 @@
                 JSON.stringify({
                     layout: currentLayout,
                     chosenMovie: itemId,
+                    watchlist: selectedMovies,
                     actions: hoveredMovies,
                     timestamp: Date.now(),
                 }),

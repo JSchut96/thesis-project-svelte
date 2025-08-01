@@ -56,6 +56,7 @@ model GridMeasurements {
   sessionId         String    @unique
   firstMovie        String?
   chosenMovie       String?
+  watchlist         Json?
   hoveredMovies     Json?
   startTime         BigInt
   endTime           BigInt?
@@ -67,6 +68,7 @@ model CarouselMeasurements {
   sessionId         String    @unique
   firstMovie        String?
   chosenMovie       String?
+  watchlist         Json?
   hoveredMovies     Json?
   startTime         BigInt
   endTime           BigInt?
@@ -78,6 +80,7 @@ model HoneycombMeasurements {
   sessionId         String    @unique
   firstMovie        String?
   chosenMovie       String?
+  watchlist         Json?
   hoveredMovies     Json?
   startTime         BigInt
   endTime           BigInt?

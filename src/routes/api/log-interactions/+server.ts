@@ -4,17 +4,9 @@ import { error, json } from '@sveltejs/kit';
 
 type Layout = 'grid' | 'carousel' | 'honeycomb';
 
-
-const layoutToModel = {
-  grid: prisma.gridMeasurements,
-  carousel: prisma.carouselMeasurements,
-  honeycomb: prisma.honeycombMeasurements
-};
-
 function isLayout(value: string): value is Layout {
   return ['grid', 'carousel', 'honeycomb'].includes(value);
 }
-
 
 export const POST: RequestHandler = async ({ request, locals }) => {
     // Check that the participant (user session) exists
@@ -23,7 +15,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
         throw error(400, 'Missing or invalid session');
     }
 
-    const {layout, chosenMovie, actions, timestamp}: {layout: string, chosenMovie: string, actions: any[], timestamp: Date} = await request.json();
+    const {layout, chosenMovie, watchlist, actions, timestamp}: {layout: string, chosenMovie: string, watchlist: string[], actions: any[], timestamp: Date} = await request.json();
     
     if(!actions) {
         throw error(400, 'No mouse actions provided.');
@@ -72,6 +64,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
                 data: {
                     firstMovie: actions[0].itemId,
                     chosenMovie,
+                    watchlist,
                     hoveredMovies: actions,
                     endTime: Number(timestamp),
                     totalTime: Number(timestamp) - Number(currentMeasurements.startTime),
@@ -85,6 +78,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
                 data: {
                     firstMovie: actions[0].itemId,
                     chosenMovie,
+                    watchlist,
                     hoveredMovies: actions,
                     endTime: Number(timestamp),
                     totalTime: Number(timestamp) - Number(currentMeasurements.startTime),
@@ -98,6 +92,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
                 data: {
                     firstMovie: actions[0].itemId,
                     chosenMovie,
+                    watchlist,
                     hoveredMovies: actions,
                     endTime: Number(timestamp),
                     totalTime: Number(timestamp) - Number(currentMeasurements.startTime),
