@@ -7,7 +7,6 @@
     export let hoveredMovies;
 
     let activeGenre = genres[0];
-    let index = 0;
 
     function selectGenre(genre: string) {
         activeGenre = genre;

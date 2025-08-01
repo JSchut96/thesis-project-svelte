@@ -1,20 +1,16 @@
-type MovieRating = {
-  movieId: number;
-  rating: number;
-};
+import type { GenreRecommendations } from '$lib/types/recommender';
 
-type GenreBuckets = Record<string, MovieRating[]>;
 
 type Layouts = {
-  honeycomb: GenreBuckets;
-  grid: GenreBuckets;
-  carousel: GenreBuckets;
+  honeycomb: GenreRecommendations;
+  grid: GenreRecommendations;
+  carousel: GenreRecommendations;
 };
 
-export function splitIntoThreeLayouts(genreBuckets: GenreBuckets): Layouts {
-  const honeycomb: GenreBuckets = {};
-  const grid: GenreBuckets = {};
-  const carousel: GenreBuckets = {};
+export function splitIntoThreeLayouts(genreBuckets: GenreRecommendations): Layouts {
+  const honeycomb: GenreRecommendations = {};
+  const grid: GenreRecommendations = {};
+  const carousel: GenreRecommendations = {};
 
   for (const [genre, movies] of Object.entries(genreBuckets)) {
     honeycomb[genre] = [];

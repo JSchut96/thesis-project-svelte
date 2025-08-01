@@ -1,11 +1,11 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import { error, json } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import prisma from '$lib/server/prisma';
 
 // Math imports
 import numeric from 'numeric';
 import { Matrix, pseudoInverse } from 'ml-matrix';
-import itemEmbeddings from '$lib/recommender/item_embeddings.json';
+import rawEmbeddings from '$lib/recommender/item_embeddings.json';
 
 // Sorting imports
 import { sortRecommendationsByGenre } from '$lib/utils/sortByGenre';
@@ -13,12 +13,10 @@ import { splitIntoThreeLayouts } from '$lib/utils/sortByLayout';
 import { getMovieId, getTmdbId } from '$lib/utils/idMap';
 
 // Types
-const itemEmbeddings: Record<string, number[]> = {}
+import type { EmbeddingMap } from '$lib/types/recommender';
+import type { Rating, GenreRecommendations } from '$lib/types/recommender';
 type MovieId = number | string;
-type Rating = {
-  movieId: string;
-  rating: number;
-};
+const itemEmbeddings = rawEmbeddings as EmbeddingMap;
 
 
 // Estimate a user embedding based on movies they rated and the corresponding ratings.
@@ -92,12 +90,15 @@ export const POST: RequestHandler = async ({ request, locals }) => {
   const recommendationsSorted = sortRecommendationsByGenre(recommendations);
 
   // Transform genre buckets: convert internal movie IDs to TMDb IDs and include rating
-  const transformed = {};
+  const transformed: GenreRecommendations = {};
+
   for (const genre in recommendationsSorted) {
-    transformed[genre] = recommendationsSorted[genre].map(({ movieId, rating }) => ({
-      movieId: getTmdbId(Number(movieId)),
-      rating
-    }));
+    transformed[genre] = recommendationsSorted[genre]
+      .map(({ movieId, rating }) => {
+        const tmdbId = getTmdbId(Number(movieId));
+        return tmdbId !== undefined ? { movieId: tmdbId, rating } : null;
+      })
+      .filter((entry): entry is { movieId: number; rating: number } => entry !== null);
   }
 
   // Further divide transformed recommendations into three layouts for the UI
@@ -116,8 +117,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
   } catch (err) {
       console.error('Could not update participant:', err);
       throw error(500, 'Failed to update database. Please try again later.');
-  }
-  
+  }  
 
   // Respond with success
   return new Response(JSON.stringify({ success: true }), {

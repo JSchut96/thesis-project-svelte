@@ -1,8 +1,6 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import prisma from '$lib/server/prisma';
 import { error, json } from '@sveltejs/kit';
-import type { Prisma } from '@prisma/client';
-import type { DefaultArgs } from '@prisma/client/runtime/library';
 
 type Layout = 'grid' | 'carousel' | 'honeycomb';
 
@@ -12,17 +10,6 @@ const layoutToModel = {
   carousel: prisma.carouselMeasurements,
   honeycomb: prisma.honeycombMeasurements
 };
-
-function getModel(layout: Layout) {
-  switch (layout) {
-    case 'grid':
-      return prisma.gridMeasurements;
-    case 'carousel':
-      return prisma.carouselMeasurements;
-    case 'honeycomb':
-      return prisma.honeycombMeasurements;
-  }
-}
 
 function isLayout(value: string): value is Layout {
   return ['grid', 'carousel', 'honeycomb'].includes(value);

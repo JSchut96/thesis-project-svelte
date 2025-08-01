@@ -40,6 +40,7 @@
         gap: 1rem;
         padding-top:0.75vw;
         z-index: 1;
+        margin-bottom: 15vw;
     }
 
     .movie-grid.active {

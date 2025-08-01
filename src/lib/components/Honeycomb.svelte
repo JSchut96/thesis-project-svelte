@@ -308,7 +308,7 @@
     }
 
     .grid {
-        font-size: 0; /*disable white space between inline block element */
+        font-size: 0;
         transform: translate3d(var(--x, 0px), var(--y, 0px), 0);
     }
 

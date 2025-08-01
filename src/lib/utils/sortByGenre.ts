@@ -1,15 +1,10 @@
 import genreMovies from '$lib/recommender/genre_movies.json';
-
-type MovieRating = {
-  movieId: number;
-  rating: number;
-};
+import type { Rating } from '$lib/types/recommender';
 
 type GenreMovies = Record<string, number[]>;
+type GenreBuckets = Record<string, Rating[]>;
 
-type GenreBuckets = Record<string, MovieRating[]>;
-
-export function sortRecommendationsByGenre(recommendations: MovieRating[]): GenreBuckets {
+export function sortRecommendationsByGenre(recommendations: Rating[]): GenreBuckets {
   // Create a reverse lookup: movieId -> genre (singular)
   const movieToGenre: Record<number, string> = {};
 
@@ -27,7 +22,7 @@ export function sortRecommendationsByGenre(recommendations: MovieRating[]): Genr
 
   // Sort recommendations into genres
   for (const rec of recommendations) {
-    const genre = movieToGenre[rec.movieId];
+    const genre = movieToGenre[Number(rec.movieId)];
     if (!genre) continue; // Skip if movie has no genre mapping
 
     genreBuckets[genre].push(rec);

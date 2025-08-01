@@ -133,10 +133,4 @@
   .button:hover {
     background-color: rgba(255,19,30,255);
   }
-
-    .error {
-        color: red;
-        font-weight: bold;
-        margin-top: 0.5rem;
-    }
 </style>
