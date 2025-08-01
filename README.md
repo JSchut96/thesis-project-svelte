@@ -45,6 +45,3 @@ From https://fonts.google.com/icons
 ## Swiper
 
 https://swiperjs.com/
-
-## Example
-https://github.com/JosinJojy/Netflix-reactjs/blob/main/src/componets/RowPost/RowPost.jsx
