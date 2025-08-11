@@ -72,7 +72,7 @@
                 <input id="hours" name="hoursPerWeek" type="number" bind:value={formData.hoursPerWeek} min="0" max="100" required />
             </div>
 
-            <button type="submit">Submit</button>
+            <button class="submit-button" type="submit">Submit</button>
         </form>
     </Content>
 
@@ -106,17 +106,6 @@
         border-radius: 6px;
         font-family: inherit;
         resize: vertical;
-    }
-
-    button {
-        display: inline-block;
-        padding: 0.75rem 1.5rem;
-        background-color: var(--main-color);
-        color: white;
-        border: none;
-        border-radius: 4px;
-        font-size: 1rem;
-        cursor: pointer;
     }
 
     button:hover {
