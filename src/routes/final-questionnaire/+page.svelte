@@ -100,37 +100,43 @@
 </Content>
 
 <style>
-  .section {
-    margin-top: 1.5rem;
-    text-align: left;
-    width: 100%;
-  }
+    .section {
+        margin-top: 1.5rem;
+        text-align: left;
+        width: 100%;
+    }
 
-  select, textarea {
-    width: 100%;
-    font-size: 1rem;
-    padding: 0.5rem;
-    margin-top: 0.25rem;
-  }
+    select, textarea {
+        width: 100%;
+        font-size: clamp(0.875rem, 1vw + 0.2rem, 1.25rem);
+        padding: clamp(0.3rem, 0.5vw + 0.2rem, 0.75rem);
+        margin-top: 0.25rem;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-family: inherit;
+        resize: vertical;
+    }
 
-  table {
-    margin-top: 1rem;
-    width: 100%;
-    border-spacing: 0.5rem;
-  }
+    table {
+        margin-top: 1rem;
+        width: 100%;
+        border-spacing: 0.5rem;
+        font-size: clamp(0.875rem, 1vw + 0.2rem, 1.25rem);
+    }
 
-  .button {
-    margin-top: 2rem;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    background-color: var(--main-color);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-  }
+    .button {
+        margin-top: 2rem;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        background-color: var(--main-color);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
 
-  .button:hover {
-    background-color: rgba(255,19,30,255);
-  }
+    .button:hover {
+        background-color: rgba(255,19,30,255);
+    }
 </style>

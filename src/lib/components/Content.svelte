@@ -1,8 +1,5 @@
 <script lang='ts'>
-
-
 </script>
-
 
 <div class="wrapper">
     <div class="content">
@@ -10,19 +7,24 @@
     </div>
 </div>
 
-
-
 <style>
     .wrapper {
         color: white;
         font-size: .75vw;
         min-height: 90vh;
-        width: 40vw;
+        min-width: 60ch;
+        max-width: 40%;
         margin: auto;
         margin-top: 2vh;
         background-color: var(--lighter-background-color);
         border: 2px outset var(--secondary-color);
         display: flex;
+    }
+
+    @media (max-width: 1300px) {
+    .wrapper {
+        max-width: 80%;
+        }
     }
 
     .content {
@@ -52,7 +54,6 @@
 
     :global(button.submit-button) {
         padding: 0.75rem 1.5rem;
-        font-size: 0.8vw;
         cursor: pointer;
         border-radius: 24px;
         background-color: var(--main-color);
@@ -67,4 +68,5 @@
     :global(a) {
         color: var(--main-color);
     }
+
 </style>

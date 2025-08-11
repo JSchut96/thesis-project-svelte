@@ -118,7 +118,7 @@
     }
 
     .movie-grid {
-        width: calc(100vw - 240px);
+        width: calc(100vw - 120px);
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(14%, 1fr));
         gap: 16px;
@@ -164,6 +164,7 @@
         border: none;
         border-radius: 0.5rem;
         cursor: pointer;
+        margin-bottom: 60px;
     }
 </style>
 

@@ -77,45 +77,49 @@
     </Content>
 
 <style>
-  .form-container {
-    max-width: 500px;
-    margin: 2rem auto;
-    padding: 2rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-  }
+    .form-container {
+        max-width: 500px;
+        margin: 2rem auto;
+        padding: 2rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
 
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
 
-  label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
+    label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
 
-  input,
-  select {
-    width: 100%;
-    padding: 0.6rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-  }
+    input,
+    select {
+        width: 100%;
+        font-size: clamp(0.875rem, 1vw + 0.2rem, 1.25rem);
+        padding: clamp(0.3rem, 0.5vw + 0.2rem, 0.75rem);
+        margin-top: 0.25rem;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-family: inherit;
+        resize: vertical;
+    }
 
-  button {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background-color: var(--main-color);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-  }
+    button {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        background-color: var(--main-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+    }
 
-  button:hover {
-    background-color: var(--button-highlight-color);
-  }
+    button:hover {
+        background-color: var(--button-highlight-color);
+    }
 </style>

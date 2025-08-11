@@ -42,7 +42,7 @@
             <div>
                 <h3>{question}</h3>
                 <div class="likert-row">
-                <span class="negative">{negative}</span>
+                <span class="adjective negative">{negative}</span>
                 <div class="likert-scale">
                     {#each [1, 2, 3, 4, 5, 6, 7] as value}
                     <label>
@@ -56,7 +56,7 @@
                     </label>
                     {/each}
                 </div>
-                <span class="positive">{positive}</span>
+                <span class="adjective positive">{positive}</span>
                 </div>
             </div>
             {/each}
@@ -79,6 +79,10 @@
         text-align: center;
         font-weight: bold;
         flex-shrink: 0;
+    }
+
+    .likert-row .adjective {
+        font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);
     }
 
     .likert-row .negative {

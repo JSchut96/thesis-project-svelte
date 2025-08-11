@@ -308,7 +308,6 @@
     }
 
     .grid {
-        font-size: 0;
         transform: translate3d(var(--x, 0px), var(--y, 0px), 0);
     }
 
@@ -389,12 +388,12 @@
         position: absolute;
         text-align: center;
         font-weight: bold;
-        font-size: 1vw;
+        font-size: clamp(0.5rem, 0.8vw + 0.2rem, 1.5rem);
     }
 
     .movie-card .genre {
         position: absolute;
-        font-size: 1vw;
+        font-size: clamp(0.5rem, 0.8vw + 0.2rem, 1.5rem);
         white-space: nowrap;
     }
 
@@ -411,7 +410,6 @@
         color: white;
         z-index: 50;
         margin-top: 50px;
-        font-size: 15px;
     }    
 </style>
 

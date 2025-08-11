@@ -62,7 +62,7 @@
 
             <p>Once you've explored the recommendations and have added as many movies to your Watchlist as you desire, <strong>choose one movie from your Watchlist</strong> and click the <strong>Play button</strong> (next to the Watchlist button) to complete the task.</p>
 
-            <p>After completing all tasks there will be a small questionaire to fill in. After submitting this, you are done.</p>
+            <p>After completing each task, there will be a small questionnaire to fill in. After all three tasks and their questionnaires, there will be one final questionnaire. After submitting this, you are done.</p>
         {:else}
             <h2>Task reminder</h2>
             <p>During each task, you'll interact with a different layout displaying movie recommendations based on the movies you've selected earlier.</p>

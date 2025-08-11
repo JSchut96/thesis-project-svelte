@@ -5,6 +5,7 @@
 
     let isOnInstructionsPage = $derived(page.url.pathname.includes('instructions'));
     let isOnLayoutPage = $derived(['grid', 'carousel', 'honeycomb'].some(segment => page.url.pathname.includes(segment)));
+    let isOnPreferencePage = page.url.pathname.includes("preference");
 
     async function startTask() {
 		const res = await fetch('/api/task-redirect');
@@ -31,6 +32,8 @@
             </button>
         {:else if isOnLayoutPage}
             <h2>Add any number of movies to your Watchlist. Then pick one you would like to watch from the Watchlist to finish the task. </h2>
+        {:else if isOnPreferencePage}
+            <h2>Select at least 5 movies you like to proceed.</h2>
         {/if}
     </div>
 </div>
@@ -65,7 +68,6 @@
 
     button {
         padding: 5px 10px;
-        font-size: 0.8vw;
         cursor: pointer;
         border-radius: 24px;
         background-color: var(--main-color);

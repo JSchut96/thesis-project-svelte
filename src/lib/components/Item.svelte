@@ -207,7 +207,6 @@
     .watch-icon {
         position: absolute;
         right: 0;
-        font-size: 1.25vw;
         color: red;
         background-color: black;
         border-bottom-left-radius: 15px;
@@ -236,7 +235,6 @@
         border: 1px solid white;
         padding: 5px;
         border-radius: 50%;
-        font-size: 1vw;
         margin-right: 10px;
         background-color: white;
     }
@@ -260,38 +258,34 @@
         display: flex;
         align-items: center;
         margin-bottom: 10px;
-        font-size: 0.5vw;
         font-weight: 600;
         color: var(--secondary-color);
         gap: 8px;
     }
 
-    .limit{
+    .limit {
         border: 0.15em solid white;
         display: inline-block;
-        width: 1.0vw;
-        height: 1.0vw;
-        line-height: 2em;
+
+        width: clamp(1rem, 0.8vw, 1.25rem);
+        height: clamp(1rem, 0.8vw, 1.25rem);
+        line-height: clamp(1rem, 0.8vw, 1.25rem);
+
         text-align: center;
         border-radius: 50%;
         background-color: black;
         color: white;
         font-weight: bold;
-        font-size: 0.5vw;
-    }    
 
-    .hd{
-        font-size: 0.5vw;
+        font-size: clamp(0.5rem, 0.45vw, 0.75rem);
     }
 
     .description{
-        font-size: 0.5vw;
         margin-bottom: 10px;
     }
     
     .tags{
         display: flex;
-        font-size: 0.5vw;
     }
 
     .tag{
@@ -303,5 +297,20 @@
         color: var(--secondary-color);
         margin-left: 8px;
         margin-right: 8px;
+    }
+
+    :global(.item) .description,
+    :global(.item) .tags,
+    :global(.item) .itemInfoTop,
+    :global(.item) .hd {
+        font-size: clamp(0.625rem, 0.35vw + 0.2rem, 0.75rem) !important;
+    }
+
+    button.icon {
+        font-size: clamp(0.75rem, 0.8vw, 1rem);
+    }
+
+    .watch-icon {
+        font-size: clamp(0.875rem, 1.25vw, 1.25rem);
     }
  </style>
