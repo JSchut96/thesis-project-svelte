@@ -18,8 +18,6 @@ export const actions: Actions = {
       throw error(400, 'Invalid form data');
     }
 
-    console.log(data.get('inputDevice'));
-
     try {
       await prisma.participant.update({
         where: { sessionId: participant.sessionId },
