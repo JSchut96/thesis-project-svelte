@@ -93,7 +93,7 @@
 
     // On resize, recalculate hexRadius
     function updateHexRadius() {
-        hexRadius = (windowWidth - 120) / 14;
+        hexRadius = (windowWidth - 120) / 12;
         updateHexPositions();
     }
 

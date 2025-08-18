@@ -86,7 +86,7 @@
         </div>
 
         <div class="section">
-            <h3>Could you list any pros or cons of each layout?*</h3>
+            <h3>Could you list any pros or cons for each layout?*</h3>
             <textarea name="prosCons" rows="4" required></textarea>
         </div>
 

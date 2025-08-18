@@ -29,6 +29,11 @@ enum Experience {
   expert
 }
 
+enum InputDevice {
+  mouse
+  touchpad
+}
+
 model Participant {
   id                Int       @id @default(autoincrement())
   sessionId         String    @unique @default(uuid())
@@ -49,6 +54,7 @@ model Participant {
   netflixExperience Experience?
   disneyExperience  Experience?
   hoursPerWeek      Int?
+  inputDevice       InputDevice?
 }
 
 model GridMeasurements {

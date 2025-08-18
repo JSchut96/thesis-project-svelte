@@ -1,5 +1,5 @@
 import prisma from '$lib/server/prisma';
-import type { Gender, Experience } from '@prisma/client';
+import type { Gender, Experience, InputDevice } from '@prisma/client';
 import { error, redirect, type Actions } from '@sveltejs/kit';
 
 
@@ -18,6 +18,8 @@ export const actions: Actions = {
       throw error(400, 'Invalid form data');
     }
 
+    console.log(data.get('inputDevice'));
+
     try {
       await prisma.participant.update({
         where: { sessionId: participant.sessionId },
@@ -28,6 +30,7 @@ export const actions: Actions = {
           netflixExperience: data.get('netflixExperience') as Experience,
           disneyExperience: data.get('disneyExperience') as Experience,
           hoursPerWeek: Number(data.get('hoursPerWeek')),
+          inputDevice: data.get('inputDevice') as InputDevice
         }
       });
     } catch (err) {

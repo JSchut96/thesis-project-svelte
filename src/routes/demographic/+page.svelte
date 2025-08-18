@@ -13,12 +13,13 @@
         nationality: '',
         netflixExperience: '',
         disneyExperience: '',
-        hoursPerWeek: ''
+        hoursPerWeek: '',
+        inputDevice: ''
     };
 </script>
     <Content>
         <h1>Almost ready</h1>
-        <p>Before you begin, please fill in the demographic questions below</p>
+        <p>Before you begin, please fill in the following questions</p>
 
         <form method="POST" class="form-container">
             <div class="form-group">
@@ -70,6 +71,15 @@
             <div class="form-group">
                 <label for="hours">How many hours per week do you spend on streaming services like Netflix or Disney+?</label>
                 <input id="hours" name="hoursPerWeek" type="number" bind:value={formData.hoursPerWeek} min="0" max="100" required />
+            </div>
+
+            <div class="form-group">
+                <label for="inputDevice">Which input device will you be using during the experiment?</label>
+                <select id="inputDevice" name="inputDevice" bind:value={formData.inputDevice} required>
+                    <option value="" disabled selected>Select your device</option>
+                    <option value="mouse">Mouse</option>
+                    <option value="touchpad">Touchpad</option>
+                </select>
             </div>
 
             <button class="submit-button" type="submit">Submit</button>

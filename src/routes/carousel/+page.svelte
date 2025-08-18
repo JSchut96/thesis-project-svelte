@@ -1,10 +1,17 @@
 <script lang="ts">
     import Carousel from "../../lib/components/Carousel.svelte"
+    import { onMount } from 'svelte';
+
 
     export let data;
 
     let selectedMovies: any[] = [];
     let hoveredMovies: any[] = [];
+
+
+    onMount(() => {
+        window.scrollTo(0, 0);
+    });
 </script>
 
 
