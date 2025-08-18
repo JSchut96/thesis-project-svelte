@@ -82,12 +82,24 @@
 
         <div class="section">
             <h3>Why did you decide on this ranking?*</h3>
-            <textarea name="reasoning" rows="4" required></textarea>
+            <textarea name="reasoning" rows="3" required></textarea>
         </div>
 
         <div class="section">
             <h3>Could you list any pros or cons for each layout?*</h3>
-            <textarea name="prosCons" rows="4" required></textarea>
+            <textarea name="prosCons" rows="11" required>
+Grid:
+Pros - 
+Cons - 
+
+Carousel:
+Pros - 
+Cons - 
+
+Honeycomb:
+Pros - 
+Cons - 
+            </textarea>
         </div>
 
         <div class="section">

@@ -59,7 +59,7 @@
     }
 
     .movie-card:hover{
-        transform: scale(3.75);
+        transform: scale(1.75);
         z-index: 50;
         transition-delay: 0.5s;
         border-radius: 0px;
