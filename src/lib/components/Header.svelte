@@ -7,17 +7,27 @@
     let isOnLayoutPage = $derived(['grid', 'carousel', 'honeycomb'].some(segment => page.url.pathname.includes(segment)));
     let isOnPreferencePage = page.url.pathname.includes("preference");
 
+    let isLoading = $state(false);
+
     async function startTask() {
-		const res = await fetch('/api/task-redirect');
-		if (res.ok) {
-			const data = await res.json();
-			if (data.redirect) {
-				goto(data.redirect);
-			}
-		} else {
-			console.error('Failed to fetch redirect URL');
-		}
-	}
+        try {
+            isLoading = true;
+            document.body.classList.add("waiting"); 
+
+            const res = await fetch('/api/task-redirect');
+            if (res.ok) {
+                const data = await res.json();
+                if (data.redirect) {
+                    await goto(data.redirect);
+                }
+            } else {
+                console.error('Failed to fetch redirect URL');
+            }
+        } finally {
+            isLoading = false;
+            document.body.classList.remove("waiting");
+        }
+    }
 </script>
 
 <div class="header-container">
@@ -25,10 +35,14 @@
         {#if isOnInstructionsPage}
             <button
                 class="submit-button"
-                on:click={startTask}
-                disabled={!$hasConfirmedInstructions}
+                onclick={startTask}
+                disabled={!$hasConfirmedInstructions || isLoading}
             >
-                Start Task
+                {#if isLoading}
+                    Loading…
+                {:else}
+                    Start Task
+                {/if}
             </button>
         {:else if isOnLayoutPage}
             <h2>Add any number of movies to your Watchlist. Then pick one you would like to watch from the Watchlist to finish the task. </h2>
@@ -64,6 +78,7 @@
 
     h2 {
         font-size: max(1rem, 1vw);
+        color: var(--main-color)
     }
 
     button {
@@ -80,7 +95,7 @@
         background-color: gray;
     }
 
-    h2 {
-        color: var(--main-color)
+    :global(body.waiting) {
+        cursor: wait !important;
     }
 </style>
