@@ -308,7 +308,7 @@
     :global(.item) .tags,
     :global(.item) .itemInfoTop,
     :global(.item) .hd {
-        font-size: clamp(0.625rem, 0.35vw + 0.2rem, 0.75rem) !important;
+        font-size: clamp(0.5rem, 0.35vw + 0.2rem, 0.75rem) !important;
     }
 
     button.icon {

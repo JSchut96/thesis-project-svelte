@@ -47,25 +47,7 @@
     // Adjust transform origin for cards that overflow outside the grid
     onMount(async () => {
         await tick();
-
-        const container = document.querySelector('.container') as HTMLElement;
-        if (!container) return;
-
-        const movieCards = container.querySelectorAll('.movie-card') as NodeListOf<HTMLElement>;
-        if (!movieCards) return;
-
-        movieCards.forEach(card => {
-            const cardTop = card.offsetTop;          
-            const fullHeight = card.scrollHeight;    
-            const containerHeight = 7 * Math.sqrt(3) * hexRadius;
-
-            console.log(cardTop, fullHeight, containerHeight);
-
-            // Check if the bottom of the card (including overflow) exceeds the container
-            if (cardTop + fullHeight > containerHeight) {
-                card.style.transformOrigin = `center ${fullHeight}px`;
-            }
-        });
+        updateTransformOrigin();        
     });
     
     onMount(() => {
@@ -86,6 +68,7 @@
 
             updateOffset();
             updateHexRadius();
+            updateTransformOrigin();  
         };
 
         // Add event listener for resize
@@ -104,6 +87,26 @@
             }
         };
     });
+
+    function updateTransformOrigin() {
+        const container = document.querySelector('.container') as HTMLElement;
+        if (!container) return;
+
+        const movieCards = container.querySelectorAll('.movie-card') as NodeListOf<HTMLElement>;
+        if (!movieCards) return;
+
+        movieCards.forEach(card => {
+            const cardTop = card.offsetTop;          
+            const fullHeight = card.scrollHeight;    
+            const containerHeight = 7 * Math.sqrt(3) * hexRadius;            
+
+            // Check if the bottom of the card (including overflow) exceeds the container
+            if (cardTop + fullHeight > containerHeight) {
+                card.style.transformOrigin = `center ${fullHeight}px`;
+                console.log(cardTop, fullHeight, containerHeight);
+            }
+        });
+    }
 
     // Calculate how to offset the honeycomb so the center hex is in the middle of the window
     function updateOffset() {
@@ -354,7 +357,7 @@
 
     .movie-card:not(.no-hover):not(.center):hover {
         aspect-ratio: 1.8 / 1;
-        transform: scale(1.45);
+        transform: scale(1.55);
         transition-delay: 0.5s;
         animation: reveal-square 0.4s linear forwards 0.5s;
         overflow: visible;
