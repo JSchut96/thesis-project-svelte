@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { abs } from "numeric"
     import Item from "./Item.svelte";
     import { onMount, tick} from "svelte";
 
@@ -102,7 +103,7 @@
 
             // Check if the bottom of the card (including overflow) exceeds the container
             if (cardTop + fullHeight > containerHeight) {
-                card.style.transformOrigin = `center ${fullHeight}px`;
+                card.style.transformOrigin = `center ${containerHeight - abs((cardTop + fullHeight))}px`;
                 console.log(cardTop, fullHeight, containerHeight);
             }
         });
