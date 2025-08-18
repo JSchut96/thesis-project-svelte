@@ -147,6 +147,10 @@
         z-index: 50;
     }
 
+    .item:hover .itemInfoTop {
+        transform: scale(0.91);
+    }
+
     .item:hover .itemInfo{
         position: relative;
         box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.07);
@@ -171,6 +175,7 @@
         background-color: var(--lighter-background-color);
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         opacity: 0;
         transition: opacity 0.1s ease;
         transition-delay: 0s;

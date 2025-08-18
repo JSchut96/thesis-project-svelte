@@ -1,6 +1,6 @@
 <script lang="ts">
     import Item from "./Item.svelte";
-    import { onMount} from "svelte";
+    import { onMount, tick} from "svelte";
 
     export let movies;
     export let genres: string[] = ['Genre 1', 'Genre 2', 'Genre 3', 'Genre 4', 'Genre 5', 'Genre 6'];
@@ -43,6 +43,30 @@
     const setFour = [3, 11, 12, 25, 26, 27, 45, 46, 47, 48, 71, 72, 73, 74, 75, 103, 104, 105, 106, 107, 108];
     const setFive = [4, 13, 14, 28, 29, 30, 49, 50, 51, 52, 76, 77, 78, 79, 80, 109, 110, 111, 112,113,114];
     const setSix = [5, 15, 16, 31, 32, 33, 53,54,55,56,81,82,83,84,85,115,116,117,118,119,120];
+
+    // Adjust transform origin for cards that overflow outside the grid
+    onMount(async () => {
+        await tick();
+
+        const container = document.querySelector('.container') as HTMLElement;
+        if (!container) return;
+
+        const movieCards = container.querySelectorAll('.movie-card') as NodeListOf<HTMLElement>;
+        if (!movieCards) return;
+
+        movieCards.forEach(card => {
+            const cardTop = card.offsetTop;          
+            const fullHeight = card.scrollHeight;    
+            const containerHeight = 7 * Math.sqrt(3) * hexRadius;
+
+            console.log(cardTop, fullHeight, containerHeight);
+
+            // Check if the bottom of the card (including overflow) exceeds the container
+            if (cardTop + fullHeight > containerHeight) {
+                card.style.transformOrigin = `center ${fullHeight}px`;
+            }
+        });
+    });
     
     onMount(() => {
         // Set initial window width when component mounts
@@ -70,6 +94,7 @@
         if (window.visualViewport) {
             window.visualViewport.addEventListener("resize", handleResize);
         }
+        
 
         // Cleanup the event listener when component is destroyed
         return () => {
