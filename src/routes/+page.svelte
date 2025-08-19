@@ -31,7 +31,8 @@
     <div class="text-section">
         <h2>What can you expect while participating in this study?</h2>
         <p>You will be asked to perform a task while navigating three different layouts for a video streaming service.
-            After all tasks are completed, you will be asked to respond to a list of statements.
+            After each task, you will be answering a short questionnaire about your experience with the layout.
+            After all tasks are completed, you will be asked to respond to a list of questions.
         </p>
     </div>
 
