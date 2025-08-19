@@ -58,8 +58,8 @@
     <p>Want to participate? That's amazing!<br> After giving consent you can continue with the button below.</p>
     <form method="POST">
         <div class="consent">
-            <input type="checkbox" name="consent" value="true" />
             <label for="consent">
+                <input type="checkbox" name="consent" value="true" />
                 Yes, I have read and understood the information provided above and I consent to my data being used for the purposes of 
                 scientific research as described above.
             </label>

@@ -27,7 +27,7 @@
         display: flex;
         flex-direction: column-reverse;
         padding-bottom: 15vw;
-        padding-top: 2vw;
+        padding-top: 3vw;
         overflow:hidden;
     }
 </style>

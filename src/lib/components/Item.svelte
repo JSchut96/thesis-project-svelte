@@ -110,7 +110,7 @@
     </div>
     <div class="itemInfo">
         <div class="icons">
-            <button class="icon material-symbols-outlined" on:click={onPlayClick} class:inverse={!isSelected}>play_arrow</button>
+            <button class="icon material-symbols-outlined" on:click={onPlayClick} class:inverse={!isSelected} disabled={!isSelected}>play_arrow</button>
             <button class="icon material-symbols-outlined" on:click={toggleSelect}>{!isSelected ? "add" : "remove"}</button>
         </div>
         <div class="itemInfoTop">
