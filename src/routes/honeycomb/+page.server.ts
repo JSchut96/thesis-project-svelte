@@ -23,6 +23,7 @@ export async function load({locals}){
           startTime: Date.now(),
         },
       });
+      console.log("Created honeycombMeasurements entry for participant", locals.participant.sessionId, new Date().toISOString());
     } catch (err) {
       console.error('Database create failed:', err);
       throw error(500, 'Failed to create database entry.');

@@ -31,9 +31,10 @@ export async function fetchMoviesById(movieIds: number[]) {
       (item: Object & { iso_639_1: String }) => item.iso_639_1 === null // Without title/logo
     )?.file_path ?? null
     const movie_logo = movie.images.logos.find(
-      (item: Object & { iso_639_1: String }) => item.iso_639_1 === 'en' || item.iso_639_1 === null // Null because sometimes a logo in not based on a language (like the symbol for Pi)
-    )
-
+        (item: Object & { iso_639_1: String }) => item.iso_639_1 === 'en') ??
+      movie.images.logos.find(
+        (item: Object & { iso_639_1: String }) => item.iso_639_1 === null) // Null because sometimes a logo in not based on a language (like the symbol for Pi)
+    
     const logo_path = movie_logo?.file_path ?? null
     const logo_aspect_ratio = movie_logo?.aspect_ratio ?? null
     

@@ -23,6 +23,7 @@ export async function load({ locals }) {
           startTime: Date.now(),
         }
       });
+      console.log("Created carouselMeasurements entry for participant", locals.participant.sessionId, new Date().toISOString());
     } catch (err) {
       console.error('Database create failed:', err, new Date().toISOString());
       throw error(500, 'Failed to create database entry.');
