@@ -42,7 +42,7 @@
     function handleMouseEnter() {      
         hoverTimeout = setTimeout(() => {
             hoverStartTime = Date.now();
-        }, 750);
+        }, 500);
     }
 
     function handleMouseLeave() {

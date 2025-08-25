@@ -23,7 +23,7 @@
 <Content>
     <h1>Welcome</h1>
     <p>
-        Seems like you are on a mobile device. To participate in this study, you need to be on a laptor or desktop.
+        Seems like you are on a mobile device. To participate in this study, you need to be on a laptop or desktop.
     </p>
 </Content>
 {:else}
