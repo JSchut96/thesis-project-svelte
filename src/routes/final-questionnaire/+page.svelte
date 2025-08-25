@@ -106,8 +106,8 @@ Cons -
             <h3>Do you have any other remarks? (Optional)</h3>
             <textarea name="remarks" rows="3"></textarea>
         </div>
-
-        <button type="submit" class="button">Submit</button>
+<br>
+        <button type="submit" class="submit-button">Submit</button>
     </form>
 </Content>
 
@@ -137,18 +137,5 @@ Cons -
         font-size: clamp(0.875rem, 1vw + 0.2rem, 1.25rem);
     }
 
-    .button {
-        margin-top: 2rem;
-        padding: 0.75rem 1.5rem;
-        font-size: 1rem;
-        background-color: var(--main-color);
-        color: white;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-    }
 
-    .button:hover {
-        background-color: rgba(255,19,30,255);
-    }
 </style>
