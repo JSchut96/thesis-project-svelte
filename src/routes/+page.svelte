@@ -1,5 +1,7 @@
 <script lang="ts">
     import Content from '$lib/components/Content.svelte';
+    import { onMount } from "svelte";
+
     let error = '';
 
     export let form: { error?: string };
@@ -7,8 +9,24 @@
     if (form?.error) {
         error = form?.error
     }
+
+    let isMobile = false;
+
+        onMount(() => {
+        // Simple mobile detection
+        const userAgent = navigator.userAgent;
+        isMobile = /android|iphone|ipad|ipod|windows phone/i.test(userAgent);
+    });
 </script>
 
+{#if isMobile}
+<Content>
+    <h1>Welcome</h1>
+    <p>
+        Seems like you are on a mobile device. To participate in this study, you need to be on a laptor or desktop.
+    </p>
+</Content>
+{:else}
 <Content>
     <h1>Welcome</h1>
     <p>And thank you for your interest in participating in this study.</p>
@@ -18,7 +36,7 @@
         <p>In order to participate in this study, you will need the following:</p>
         <ul>
             <li>A laptop or desktop with touchpad or mouse. (i.e. NO phone or tablet)</li>
-            <li>Enough time to complete the full study in one go (Up to x minutes)</li> <!-- Time to be determined later-->
+            <li>Enough time to complete the full study in one go (around 15 minutes)</li>
         </ul>
     </div>
 
@@ -58,26 +76,27 @@
     <p>Want to participate? That's amazing!<br> After giving consent you can continue with the button below.</p>
     <form method="POST">
         <div class="consent">
-            <label for="consent">
-                <input type="checkbox" name="consent" value="true" />
-                Yes, I have read and understood the information provided above and I consent to my data being used for the purposes of 
-                scientific research as described above.
+            <label>
+            <input type="checkbox" name="consent" value="true" required>
+            Yes, I have read and understood the information provided above and I consent to my data being used for the purposes of 
+            scientific research as described above.
             </label>
-        </div>          
+        </div>    
         
         <p class="error">{error}</p>
-        
+
         <button class="submit-button" type="submit">
             Participate
         </button>
     </form>
 </Content>
+{/if}
 
 
 <style>
     .error {
         min-height: 1.5em;
-        color: var(--main-color);
+        color: red;
     }
 
     label {

@@ -62,7 +62,7 @@
     }
 
     :global(button.submit-button:hover) {
-        background-color: rgba(255,19,30,255)
+        background-color: var(--button-hover-color);
     }
 
     :global(a) {

@@ -11,9 +11,9 @@
         age: '',
         gender: '',
         nationality: '',
-        netflixExperience: '',
-        disneyExperience: '',
+        streamingExperience: '',
         hoursPerWeek: '',
+        colorBlindness: '',
         inputDevice: ''
     };
 </script>
@@ -45,32 +45,49 @@
             </div>
 
             <div class="form-group">
-                <label for="netflixExperience">How much experience do you have using the service Netflix?</label>
-                <select name="netflixExperience" bind:value={formData.netflixExperience} required>
-                    <option value="" disabled selected>Select one</option>
-                    <option value="none">None</option>
-                    <option value="little">A little</option>
-                    <option value="some">Some experience</option>
-                    <option value="experienced">Experienced</option>
-                    <option value="expert">Expert</option>
-                </select>
+                <label for="streamingExperience">
+                    How experienced are you at using video streaming services (e.g., Netflix, Disney+, HBO Max)?
+                </label>
+                <div class="likert-row">
+                <span class="adjective negative">Extremely Inexperienced</span>
+                <div class="likert-scale">
+                    {#each [1, 2, 3, 4, 5] as value}
+                    <label>
+                        <input
+                        type="radio"
+                        name="streamingExperience"
+                        value={value}
+                        bind:group={formData.streamingExperience}
+                        required
+                        />
+                    </label>
+                    {/each}
+                </div>
+                <span class="adjective positive">Extremely Experienced</span>
+                </div>
             </div>
 
             <div class="form-group">
-                <label for="disneyExperience">How much experience do you have using the service Disney+?</label>
-                <select name="disneyExperience" bind:value={formData.disneyExperience} required>
-                    <option value="" disabled selected>Select one</option>
-                    <option value="none">None</option>
-                    <option value="little">A little</option>
-                    <option value="some">Some experience</option>
-                    <option value="experienced">Experienced</option>
-                    <option value="expert">Expert</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="hours">How many hours per week do you spend on streaming services like Netflix or Disney+?</label>
+                <label for="hours">How many hours per week do you spend on such streaming services?</label>
                 <input id="hours" name="hoursPerWeek" type="number" bind:value={formData.hoursPerWeek} min="0" max="100" required />
+            </div>
+
+            <div class="form-group">
+                <label for="colorBlindness">Do you have any color vision deficiencies?</label>
+                <select
+                    id="colorBlindness"
+                    name="colorBlindness"
+                    bind:value={formData.colorBlindness}
+                    required
+                >
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="none">No color blindness</option>
+                    <option value="red">Protanopia (red-blind)</option>
+                    <option value="green">Deuteranopia (green-blind)</option>
+                    <option value="blue">Tritanopia (blue-blind)</option>
+                    <option value="complete">Achromatopsia (complete color blindness)</option>
+                    <option value="other">Other / Unsure</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -87,6 +104,11 @@
     </Content>
 
 <style>
+
+    label {
+        color: var(--main-color);
+    }
+
     .form-container {
         max-width: 500px;
         margin: 2rem auto;
@@ -120,5 +142,50 @@
 
     button:hover {
         background-color: var(--button-highlight-color);
+    }
+
+    .likert-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .likert-row span {
+        width: 120px;
+        text-align: center;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+
+    .likert-row .adjective {
+        font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);
+    }
+
+    .likert-row .negative {
+        text-align: right;
+    }
+
+    .likert-row .positive {
+        text-align: left;
+    }
+
+    .likert-scale {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .likert-scale label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .likert-scale input[type="radio"] {
+        transform: scale(1.2);
+        cursor: pointer;
+        accent-color: var(--secondary-color);
     }
 </style>

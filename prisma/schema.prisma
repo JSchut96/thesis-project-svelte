@@ -21,17 +21,18 @@ enum Gender {
   other
 }
 
-enum Experience {
-  none
-  little
-  some
-  experienced
-  expert
-}
-
 enum InputDevice {
   mouse
   touchpad
+}
+
+enum ColorBlindness {
+  none
+  red
+  green
+  blue
+  complete
+  other
 }
 
 model Participant {
@@ -48,13 +49,13 @@ model Participant {
   finished          Boolean   @default(false)
 
   // Demographics
-  age               Int?     
-  gender            Gender?
-  nationality       String?
-  netflixExperience Experience?
-  disneyExperience  Experience?
-  hoursPerWeek      Int?
-  inputDevice       InputDevice?
+  age                 Int?     
+  gender              Gender?
+  nationality         String?
+  streamingExperience Int?
+  hoursPerWeek        Int?
+  colorBlindness      ColorBlindness?
+  inputDevice         InputDevice?
 }
 
 model GridMeasurements {

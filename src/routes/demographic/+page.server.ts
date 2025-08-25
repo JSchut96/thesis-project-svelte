@@ -1,5 +1,5 @@
 import prisma from '$lib/server/prisma';
-import type { Gender, Experience, InputDevice } from '@prisma/client';
+import type { Gender, InputDevice, ColorBlindness } from '@prisma/client';
 import { error, redirect, type Actions } from '@sveltejs/kit';
 
 
@@ -25,9 +25,9 @@ export const actions: Actions = {
           age: Number(data.get('age')),
           gender: data.get('gender') as Gender,
           nationality: String(data.get('nationality')),
-          netflixExperience: data.get('netflixExperience') as Experience,
-          disneyExperience: data.get('disneyExperience') as Experience,
+          streamingExperience: Number(data.get('streamingExperience')),
           hoursPerWeek: Number(data.get('hoursPerWeek')),
+          colorBlindness: data.get('colorBlindness') as ColorBlindness,
           inputDevice: data.get('inputDevice') as InputDevice
         }
       });

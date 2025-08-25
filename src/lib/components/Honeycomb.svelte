@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { abs } from "numeric"
     import Item from "./Item.svelte";
     import { onMount, tick} from "svelte";
 
@@ -34,6 +33,8 @@
     // Hex Variables
     const center = {q: 0, r: 0, s: 0};
     let hexRadius = 0;
+    let hexGap = 0;
+    let hexGapFactor = 0.025;
     const rings = 6;
 
     // Cell Groups
@@ -123,7 +124,11 @@
 
     // On resize, recalculate hexRadius
     function updateHexRadius() {
-        hexRadius = (windowWidth - 120) / 12;
+        // base hex size scales with viewport width
+        hexRadius = (windowWidth - 120) / 15;
+
+        // gap scales with hex size, but is clamped
+        hexGap = Math.min(Math.max(hexRadius * hexGapFactor, 0), 10);
         updateHexPositions();
     }
 
@@ -187,9 +192,10 @@
 
     // Return pixel coordinates based on cube index
     function cubeToPixel({ q, r, s }:{q: number; r: number; s: number }) {
+        const spacing = hexRadius + hexGap;
         return {
-            x: hexRadius * (3./2 * q),
-            y: hexRadius * (Math.sqrt(3)/2 * q + Math.sqrt(3) * r)
+            x: spacing * (3./2 * q),
+            y: spacing * (Math.sqrt(3)/2 * q + Math.sqrt(3) * r)
         };
     }
 
@@ -225,6 +231,7 @@
         document.querySelectorAll('.movie-card')?.forEach(card => {card.classList.remove('no-hover')});
         document.querySelectorAll('.item')?.forEach(card => {card.classList.remove('no-hover')});
     }
+
 </script>
 
 <div class="container"
@@ -292,6 +299,7 @@
         height: 100%;
         margin: auto;
         cursor: grab;
+        background-color: var(--lighter-background-color);
     }
 
     .container.dragging {
@@ -299,42 +307,42 @@
     }
 
     .border-plate {
-        --offset: calc(1.732 * var(--hex-radius) * 6 + 5px);
+        --offset: calc(1.732 * var(--hex-radius) * 6);
         position: absolute;
-        height: var(--offset);
-        width: calc(var(--hex-radius) / 2 + 5px);
+        height: calc(var(--offset) + 30px);
+        width: calc(var(--hex-radius) / 2 + 10px);
         background-color: var(--main-color);
         z-index: 1;
     }
 
     .border-plate.one {
         clip-path: polygon(0% 8%, 95% 8%, 100% 100%, 0% 100%);
-        transform: translateY(calc(-1 * var(--offset))) translateX(-7px);
+        transform: translateY(calc(-1.02 * var(--offset))) translateX(-12px);
     }
 
     .border-plate.two {
         clip-path: polygon(0% 8.5%, 100% 8%, 100% 100%, 0% 100%);
-        transform: translateY(calc(-8.03 * var(--hex-radius))) translateX(calc(5.58*var(--hex-radius)))  rotate(60deg);
+        transform: translateY(calc(-8.2 * var(--hex-radius))) translateX(calc(5.65*var(--hex-radius)))  rotate(60deg);
     }
 
     .border-plate.three {
         clip-path: polygon(0% 8.5%, 100% 8%, 100% 100%, 0% 100%);
-        transform: translateY(calc(-1.98 * var(--hex-radius))) translateX(calc(6.35*var(--hex-radius)))  rotate(120deg);
+        transform: translateY(calc(-2.04 * var(--hex-radius))) translateX(calc(6.38*var(--hex-radius)))  rotate(120deg);
     }
 
     .border-plate.four {
         clip-path: polygon(0% 0%, 100% 0%, 100% 91%, 0% 91%);
-        transform: translateY(calc(1.71 * var(--hex-radius))) translateX(calc(1.47*var(--hex-radius)));
+        transform: translateY(calc(1.73 * var(--hex-radius))) translateX(calc(1.45*var(--hex-radius)));
     }
 
     .border-plate.five {
         clip-path: polygon(0% 0%, 100% 0%, 100% 92%, 0% 91%);
-        transform: translateY(calc(-0.69 * var(--hex-radius))) translateX(calc(-4.14*var(--hex-radius))) rotate(60deg);
+        transform: translateY(calc(-0.66 * var(--hex-radius))) translateX(calc(-4.32*var(--hex-radius))) rotate(60deg);
     }
 
     .border-plate.six {
         clip-path: polygon(0% 0%, 100% 0%, 100% 92%, 0% 91%);
-        transform: translateY(calc(-6.73 * var(--hex-radius))) translateX(calc(-4.88*var(--hex-radius)))  rotate(120deg);
+        transform: translateY(calc(-6.87 * var(--hex-radius))) translateX(calc(-5.06*var(--hex-radius)))  rotate(120deg);
     }
 
     .grid {
@@ -400,18 +408,16 @@
     }
 
     .movie-card.center {
-        --w: calc(var(--hex-radius) * 2 + 10px);
-        --h: calc(var(--w) * sqrt(3)/2);
-        width: var(--w);
-        height: var(--h);
         margin: 0;
         background-color: var(--main-color);
         z-index: 50;
         display: flex;
         align-items: center;
         justify-content: center;
-        transform: translate(-10px, -10px);
+        transform: scale(1.18);
         color: white;
+        z-index: -1;
+
     }
 
     .movie-card .center-label {
@@ -427,12 +433,12 @@
         white-space: nowrap;
     }
 
-    .genre-2 { top: 5%; left: 50%; transform: translate(-50%, -50%); }
-    .genre-3 { top: 25%; right: 18%; transform: translate(50%, -50%) rotate(60deg); }
-    .genre-4 { bottom: 25%; right: 18%; transform: translate(50%, 50%) rotate(-60deg); }
-    .genre-5 { bottom: 5%; left: 50%; transform: translate(-50%, 50%); }
-    .genre-6 { bottom: 25%; left: 18%; transform: translate(-50%, 50%) rotate(60deg); }
-    .genre-1 { top: 25%; left: 18%; transform: translate(-50%, -50%) rotate(-60deg); }
+    .genre-2 { top: 7%; left: 50%; transform: translate(-50%, -50%); }
+    .genre-3 { top: 26%; right: 19%; transform: translate(50%, -50%) rotate(60deg); }
+    .genre-4 { bottom: 26%; right: 19%; transform: translate(50%, 50%) rotate(-60deg); }
+    .genre-5 { bottom: 7%; left: 50%; transform: translate(-50%, 50%); }
+    .genre-6 { bottom: 26%; left: 19%; transform: translate(-50%, 50%) rotate(60deg); }
+    .genre-1 { top: 26%; left: 19%; transform: translate(-50%, -50%) rotate(-60deg); }
 
     p {
         display: flex;
