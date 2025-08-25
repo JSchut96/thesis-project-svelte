@@ -127,8 +127,12 @@
         // base hex size scales with viewport width
         hexRadius = (windowWidth - 120) / 15;
 
-        // gap scales with hex size, but is clamped
-        hexGap = Math.min(Math.max(hexRadius * hexGapFactor, 0), 10);
+        if (windowWidth <= 1280){
+            hexGap = 0;
+        }
+        else {
+            hexGap = hexRadius * hexGapFactor;
+        }
         updateHexPositions();
     }
 
