@@ -155,7 +155,7 @@
     }
 
     swiper-slide:hover{
-        transform: scale(1.55);
+        transform: scale(1.45);
         z-index: 50;
         transition-delay: 0.5s;
         border-radius: 0px;

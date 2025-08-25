@@ -45,7 +45,7 @@
             </div>
 
             <div class="form-group">
-                <label for="netflixExperience">How much experience do you have with Netflix?</label>
+                <label for="netflixExperience">How much experience do you have using the service Netflix?</label>
                 <select name="netflixExperience" bind:value={formData.netflixExperience} required>
                     <option value="" disabled selected>Select one</option>
                     <option value="none">None</option>
@@ -57,7 +57,7 @@
             </div>
 
             <div class="form-group">
-                <label for="disneyExperience">How much experience do you have with Disney+?</label>
+                <label for="disneyExperience">How much experience do you have using the service Disney+?</label>
                 <select name="disneyExperience" bind:value={formData.disneyExperience} required>
                     <option value="" disabled selected>Select one</option>
                     <option value="none">None</option>

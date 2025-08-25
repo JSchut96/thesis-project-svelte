@@ -103,9 +103,10 @@
 
             // Check if the bottom of the card (including overflow) exceeds the container
             if (cardTop + fullHeight > containerHeight) {
-                card.style.transformOrigin = `center ${containerHeight - abs((cardTop + fullHeight))}px`;
+                card.style.transformOrigin = `center ${fullHeight* 1.25}px`;
                 console.log(cardTop, fullHeight, containerHeight);
             }
+
         });
     }
 
@@ -358,7 +359,7 @@
 
     .movie-card:not(.no-hover):not(.center):hover {
         aspect-ratio: 1.8 / 1;
-        transform: scale(1.55);
+        transform: scale(1.45);
         transition-delay: 0.5s;
         animation: reveal-square 0.4s linear forwards 0.5s;
         overflow: visible;

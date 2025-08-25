@@ -45,7 +45,7 @@
                 {/if}
             </button>
         {:else if isOnLayoutPage}
-            <h2>Add any number of movies to your Watchlist. Then pick one you would like to watch from the Watchlist to finish the task. </h2>
+            <h2>Mark any number of movies as part of your Watchlist. Then pick one movie you have marked and press Play to finish the task. </h2>
         {:else if isOnPreferencePage}
             <h2>Select at least 5 movies you like to proceed.</h2>
         {/if}

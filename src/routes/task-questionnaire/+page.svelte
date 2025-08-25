@@ -19,7 +19,7 @@
         ['obstructive', 'supportive', 'The layout supported me in finding movies I wanted to watch.'],
         ['complicated', 'easy', 'It was easy to understand how to use this layout.'],
         ['inefficient', 'efficient', 'This layout helped me quickly find suitable recommendations.'],
-        ['confusing', 'clear', 'The layout made it clear where to look for recommendations.'],
+        ['confusing', 'clear', 'The layout made it clear where to look for good recommendations.'],
         ['boring', 'exciting', 'I found this layout visually engaging and interesting.'],
         ['not interesting', 'interesting', 'The layout kept me interested while browsing through options.'],
         ['conventional', 'inventive', 'This layout felt original and different from typical recommendation interfaces.'],
