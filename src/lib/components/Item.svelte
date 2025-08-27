@@ -40,9 +40,7 @@
     let hoverTimeout: any;
     let hoverStartTime: number | null = null;
     function handleMouseEnter() {      
-        hoverTimeout = setTimeout(() => {
-            hoverStartTime = Date.now();
-        }, 300);
+        hoverStartTime = Date.now();
     }
 
     function handleMouseLeave() {
@@ -51,7 +49,6 @@
             hoveredMovies.push({itemId, hoverDuration});
         }
         hoverStartTime = null;
-        clearTimeout(hoverTimeout);
     }
 
     let isSelected = false;
