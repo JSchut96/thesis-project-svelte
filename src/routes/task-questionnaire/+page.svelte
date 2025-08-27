@@ -17,15 +17,15 @@
 
     const adjectivePairs = [
         ['obstructive', 'supportive', 'This layout supported me in finding movies I wanted to watch.'],
-        ['complicated', 'easy', 'This layout was easy to understand and use.'],
-        ['inefficient', 'efficient', 'This layout helped me quickly find suitable recommendations.'],
+        ['complicated', 'easy', 'This layout was easy to understand.'],
+        ['inefficient', 'efficient', 'This layout made it efficient to find suitable recommendations.'],
         ['confusing', 'clear', 'This layout made it clear where to look for good recommendations.'],
-        ['boring', 'exciting', 'This layout was visually engaging and interesting.'],
-        ['not interesting', 'interesting', 'This layout kept me interested while browsing through options.'],
-        ['conventional', 'inventive', 'This layout felt original and different from typical recommendation interfaces.'],
-        ['usual', 'leading edge', 'This layout gave a sense of being modern or innovative.']
+        ['boring', 'exciting', 'This layout felt exciting to use.'],
+        ['not interesting', 'interesting', 'This layout felt interesting while browsing through options.'],
+        ['conventional', 'inventive', 'This layout felt more inventive than typical recommendation interfaces.'],
+        ['usual', 'leading edge', 'This layout felt leading-edge.']
     ];
-</script>
+</script> 
 
 <Content>
     <h1>{layout} Task Questionnaire</h1>
