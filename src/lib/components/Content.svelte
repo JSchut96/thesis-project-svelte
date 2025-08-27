@@ -15,7 +15,6 @@
         min-width: 60ch;
         max-width: 40%;
         margin: auto;
-        margin-top: 2vh;
         background-color: var(--lighter-background-color);
         border: 2px outset var(--secondary-color);
         display: flex;

@@ -55,12 +55,12 @@
             <p>You can freely explore each layout by hovering over movie posters. This will reveal a popup with additional information about the movie.</p>
 
             <ul>
-                <li>You can <strong>mark a movie as part of your "Watchlist"</strong> by clicking the <strong>plus (+) button</strong> in the popup.</li>
+                <li>You can <strong>mark a movie as part of your Watchlist</strong> by clicking the <strong>plus (+) button</strong> in the popup.</li>
                 <li>This will add a <strong>star symbol</strong> to the poster of the movie.</li>
-                <li>To <strong>remove a movie</strong> from your "Watchlist", click the same button again (now shown as a <strong>minus (–) symbol</strong>).</li>
+                <li>To <strong>remove a movie</strong> from your Watchlist, click the same button again (now shown as a <strong>minus (–) symbol</strong>).</li>
             </ul>
 
-            <p>Once you've explored the recommendations and have marked as many movies as part of your "Watchlist" as you desire, <strong>choose one movie you have marked</strong> and click the <strong>Play button</strong> (next to the add/remove button) to complete the task.</p>
+            <p>Once you've explored the recommendations and have marked as many movies as part of your Watchlist as you desire, <strong>choose one movie you have marked</strong> and click the <strong>Play button</strong> (next to the add/remove button) to complete the task.</p>
 
             <p>After completing each task, there will be a small questionnaire to fill in. After all three tasks and their questionnaires, there will be one final questionnaire. After submitting this, you are done.</p>
         {:else}
@@ -71,12 +71,12 @@
             <p>You can freely explore each layout by hovering over movie posters. This will reveal a popup with additional information about the movie.</p>
 
             <ul>
-                <li>You can <strong>mark a movie as part of your "Watchlist"</strong> by clicking the <strong>plus (+) button</strong> in the popup.</li>
+                <li>You can <strong>mark a movie as part of your Watchlist</strong> by clicking the <strong>plus (+) button</strong> in the popup.</li>
                 <li>This will add a <strong>star symbol</strong> to the poster of the movie.</li>
-                <li>To <strong>remove a movie</strong> from your "Watchlist", click the same button again (now shown as a <strong>minus (–) symbol</strong>).</li>
+                <li>To <strong>remove a movie</strong> from your Watchlist, click the same button again (now shown as a <strong>minus (–) symbol</strong>).</li>
             </ul>
 
-            <p>Once you've explored the recommendations and have marked as many movies as part of your "Watchlist" as you desire, <strong>choose one movie you have marked to watch</strong> and click the <strong>Play button</strong> (next to the add/remove button) to complete the task.</p>
+            <p>Once you've explored the recommendations and have marked as many movies as part of your Watchlist as you desire, <strong>choose one movie you have marked to watch</strong> and click the <strong>Play button</strong> (next to the add/remove button) to complete the task.</p>
 
             <p>Don't forget that there will be a questionaire after completing all three tasks.</p>
         {/if}
