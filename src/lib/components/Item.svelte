@@ -35,7 +35,7 @@
     // Format Image URL
     const imageURLBackdrop: string = `https://image.tmdb.org/t/p/w500/${movie.empty_backdrop_path}`
     const imageAlt = `${movie.title} Movie Poster`
-    const imageURLLogo = `https://image.tmdb.org/t/p/w500/${movie.logo_path}`
+    const imageURLLogo = `https://image.tmdb.org/t/p/w300/${movie.logo_path}`
 
     let hoverTimeout: any;
     let hoverStartTime: number | null = null;
