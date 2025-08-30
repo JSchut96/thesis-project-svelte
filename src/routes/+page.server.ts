@@ -51,7 +51,7 @@ export const actions: Actions = {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'strict',
-        maxAge: 60 * 60 * 24 * 30, // 1 month, maybe increase to end of thesis
+        maxAge: 60 * 60 * 24 * 30 * 2, // 2 months
       });
     }
 
