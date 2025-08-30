@@ -30,6 +30,7 @@
 		"@tensorflow/tfjs": "^4.22.0",
 		"express": "^5.1.0",
 		"ml-matrix": "^6.12.1",
+		"node-fetch": "^3.3.2",
 		"numeric": "^1.2.6",
 		"pandas": "^0.0.3",
 		"prisma": "^6.10.1",

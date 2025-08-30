@@ -1,5 +1,7 @@
 import { error, redirect, type Actions } from '@sveltejs/kit';
 import prisma from '$lib/server/prisma';
+import fetch from "node-fetch"
+import { DISCORD_WEBHOOK } from '$env/static/private'
 
 export const actions: Actions = {
     default: async ({ request, locals }) => {
@@ -44,6 +46,21 @@ export const actions: Actions = {
         } catch(err) {
             console.log("Failed to update finished variable for paticipant", participant.sessionId, new Date().toISOString());
             throw error(500, 'Failed to update database entry.');
+        }
+
+
+        try {
+            const count = await prisma.participant.count();
+
+            await fetch(DISCORD_WEBHOOK, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    content: `🎉 New participant finished!\nTotal participants: **${count}**`
+                }),
+            });        
+        } catch (err) {
+            console.log("Failed to send message to discord.")
         }
         
 
