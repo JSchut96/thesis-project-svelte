@@ -50,13 +50,19 @@ export const actions: Actions = {
 
 
         try {
-            const count = await prisma.participant.count();
+            const countFinished = await prisma.participant.count({
+                where: {finished: true}
+            });
+
+            const countUnfinished = await prisma.participant.count({
+                where: {finished: false}
+            });
 
             await fetch(DISCORD_WEBHOOK, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    content: `🎉 New participant finished!\nTotal participants: **${count}**`
+                    content: `🎉 New participant finished!\nTotal participants finished: **${countFinished}**\nParticipants unfinished: **${countUnfinished}`
                 }),
             });        
         } catch (err) {
