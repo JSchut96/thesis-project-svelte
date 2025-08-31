@@ -10,6 +10,10 @@
         return 'unknown';
     }
 
+    function handleImageError(e: any) {
+        setTimeout(() => e.target.src = e.target.src, 300);
+    }
+
     export let selectedMovies: any[];
     export let hoveredMovies: any[];
     export let itemId: any;
@@ -105,8 +109,8 @@
 <div id="{itemId}" class="item" aria-label="Hoverable Item" role="group" on:mouseenter={handleMouseEnter} on:mouseleave={handleMouseLeave}>
     <div class="poster">
         <div class="watch-icon material-symbols-outlined" class:hidden={!isSelected} class:honeycomb={isHoneycomb}>star</div>
-        <img class="logo" alt={imageAlt} src={imageURLLogo} style="aspect-ratio: {movie.logo_aspect_ratio}"/>            
-        <img class="backdrop" src={imageURLBackdrop} alt={imageAlt}/>
+        <img loading="lazy" class="logo" alt={imageAlt} src={imageURLLogo} style="aspect-ratio: {movie.logo_aspect_ratio}"  on:error={(e) => handleImageError(e)}/>            
+        <img loading="lazy" class="backdrop" src={imageURLBackdrop} alt={imageAlt} on:error={(e) => handleImageError(e)}/>
     </div>
     <div class="itemInfo">
         <div class="icons">
