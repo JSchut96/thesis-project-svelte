@@ -28,3 +28,5 @@ vite.config.ts.timestamp-*
 prisma/*.db
 .prisma/
 
+deploy.sh
+
