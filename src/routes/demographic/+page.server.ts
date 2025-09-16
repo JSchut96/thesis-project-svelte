@@ -1,6 +1,21 @@
 import prisma from '$lib/server/prisma'
+import { sortRecommendationsByGenre } from '$lib/utils/sortByGenre.js'
 import type { Gender, InputDevice, ColorBlindness } from '@prisma/client'
 import { error, redirect, type Actions } from '@sveltejs/kit'
+
+export async function load({ locals }) {
+  const participant = locals.participant
+  if (!participant) {
+    throw error(400, 'Missing or invalid session')
+  }
+
+  const stored = await prisma.participant.findUnique({
+    where: { sessionId: participant.sessionId }})
+
+  if (stored && Array.isArray(stored.preferenceMovies) && stored.preferenceMovies.length > 0) {
+    throw redirect(303, '/instructions')
+  }
+}
 
 export const actions: Actions = {
   default: async ({ request, locals }) => {

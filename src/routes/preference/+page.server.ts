@@ -1,5 +1,6 @@
+import prisma from '$lib/server/prisma'
 import { fetchMoviesById } from '$lib/apiHelpers/fetchMoviesById'
-import { error } from '@sveltejs/kit'
+import { error, redirect } from '@sveltejs/kit'
 
 const elicitation_movies = [
   603, 329, 280, 11, 550, 602, 568, 85, 120, 8587, 13, 278, 680, 857, 424, 862,
@@ -7,9 +8,11 @@ const elicitation_movies = [
 ]
 
 export async function load({ locals }) {
-  if (!locals.participant) {
+  const participant = locals.participant
+  if (!participant) {
     throw error(400, 'Missing or invalid session')
   }
+
   console.log(
     'Start fetching preference movies for',
     locals.participant?.sessionId,
