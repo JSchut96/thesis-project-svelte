@@ -21,22 +21,19 @@ const itemEmbeddings = rawEmbeddings as EmbeddingMap;
 
 // Estimate a user embedding based on movies they rated and the corresponding ratings.
 function inferUserEmbedding(ratedMovies: MovieId[], ratings: number[]): number[] {
-  // Look up item embeddings (Q) for the rated movie IDs
-  const Q = ratedMovies.map((movieId) => itemEmbeddings[String(movieId)]);
+  // Filter out movies with missing embeddings
+  const valid = ratedMovies
+    .map((id, i) => ({ embedding: itemEmbeddings[String(id)], rating: ratings[i] }))
+    .filter(x => x.embedding !== undefined);
 
-  // Convert Q to a matrix of shape [num_rated_movies x latent_dim]
-  const Qm = new Matrix(Q);
+  const Q = valid.map(x => x.embedding);  
+  const R = valid.map(x => x.rating);     
 
-  // Create a 1-row matrix (row vector) from ratings: shape [1 x num_rated_movies]
-  const Rm = Matrix.rowVector(ratings);
+  const Qm = new Matrix(Q);               
+  const QTQ_inv = pseudoInverse(Qm.transpose().mmul(Qm));  
+  const RQ = new Matrix([R]).mmul(Qm);    
+  const u = RQ.mmul(QTQ_inv);             
 
-  // Compute pseudo-inverse of Q (to solve least squares)
-  const pseudoInv = pseudoInverse(Qm);
-
-  // Compute user embedding vector u: shape [1 x latent_dim]
-  const u = Rm.mmul(pseudoInv);
-
-  // Flatten to a plain array and return
   return u.to1DArray();
 }
 
@@ -71,7 +68,6 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 
   // Extract selected genres and movies from request body
   const { genres, movies }: { genres: string[]; movies: number[] } = await request.json();
-
   // Translate UI-facing movie IDs to internal model IDs, filtering out undefined
   const translatedMovies: number[] = movies
     .map(getMovieId)
