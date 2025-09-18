@@ -52,15 +52,17 @@
                 <span class="adjective negative">Extremely Inexperienced</span>
                 <div class="likert-scale">
                     {#each [1, 2, 3, 4, 5] as value}
-                    <label>
-                        <input
-                        type="radio"
-                        name="streamingExperience"
-                        value={value}
-                        bind:group={formData.streamingExperience}
-                        required
-                        />
-                    </label>
+                        <label for={"experience-" + value}>
+                            <input
+                                id={"experience-" + value}
+                                type="radio"
+                                name="streamingExperience"
+                                value={String(value)}
+                                bind:group={formData.streamingExperience}
+                                required
+                            />
+                            <span class="sr-only">{value}</span>
+                        </label>
                     {/each}
                 </div>
                 <span class="adjective positive">Extremely Experienced</span>
@@ -107,6 +109,17 @@
 
     label {
         color: var(--main-color);
+    }
+
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
     }
 
     .form-container {
