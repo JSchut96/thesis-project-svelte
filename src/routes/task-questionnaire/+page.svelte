@@ -47,13 +47,15 @@
                     {#each [1, 2, 3, 4, 5, 6, 7] as value}
                     <label>
                         <input
-                        type="radio"
-                        name={negative}
-                        value={value}
-                        bind:group={likertRatings[negative]}
-                        required
+                            id={negative + "-" + value}
+                            type="radio"
+                            name={negative}
+                            value={String(value)}
+                            bind:group={likertRatings[negative]}
+                            required
                         />
-                    </label>
+                        <span class="sr-only">{value}</span>
+                        </label>
                     {/each}
                 </div>
                 <span class="adjective positive">{positive}</span>
@@ -66,6 +68,17 @@
 </Content>
 
 <style>
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+    }
+    
     .likert-row {
         display: flex;
         align-items: center;
