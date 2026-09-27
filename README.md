@@ -181,4 +181,4 @@ If you use this code in academic work, please cite the associated publication:
 > Dossi, M., Schut, J., Dimara, E., & Chatzimparmpas, A.  
 > *The effects of interface layout on exploration and positional bias in streaming recommender systems.*
 
-Publication details can be added once available.
+Publication details will be added once the article is published.
